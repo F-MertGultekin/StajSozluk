@@ -1,18 +1,12 @@
 package com.example.StajSozluk.Model;
+
+import com.example.StajSozluk.EnumFile.UserInteractionType;
 import javax.persistence.*;
-import java.util.List;
+import com.example.StajSozluk.EnumFile.*;
 
 @Entity
-public class Likes {
+public class UserInteraction {
 
-
-
-    public enum likeType
-    {
-        like,
-        dontlike
-
-    }
     @Id
     @GeneratedValue(strategy
             = GenerationType.AUTO)
@@ -25,9 +19,9 @@ public class Likes {
     private boolean favourite;
 
 
-    @Column(name="likeType",nullable=true, unique=false)
+    @Column(name="UserInteractionType",nullable=true, unique=false)
     @Enumerated(EnumType.STRING)
-    private likeType likeType;
+    private UserInteractionType UserInteractionType;
 
 
     @ManyToOne(optional = true)
@@ -39,19 +33,14 @@ public class Likes {
     private Entry entry;
 
 
-
-
-
-
-    public Likes()
+    public UserInteraction()
     {
 
     }
-    public Likes(boolean favourite, Likes.likeType likeType) {
-
+    public UserInteraction(boolean favourite, UserInteractionType UserInteractionType) {
 
         this.favourite=favourite;
-        this.likeType=likeType;
+        this.UserInteractionType=UserInteractionType;
 
     }
     public int getId() {
@@ -71,11 +60,13 @@ public class Likes {
         this.favourite = favourite;
     }
 
-    public Likes.likeType getLikeType() {
-        return likeType;
+    public UserInteractionType getLikeType() {
+        return UserInteractionType;
     }
 
-    public void setLikeType(Likes.likeType likeType) {
-        this.likeType = likeType;
+    public void setLikeType(UserInteractionType likeType) {
+        this.UserInteractionType = likeType;
     }
+
+
 }

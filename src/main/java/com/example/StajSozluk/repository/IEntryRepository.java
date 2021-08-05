@@ -1,17 +1,16 @@
 package com.example.StajSozluk.repository;
 
-
-import com.example.StajSozluk.Model.Likes;
+import com.example.StajSozluk.Model.Entry;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
 @Repository
-public interface LikesRepository extends JpaRepository<Likes, Integer> {
+public interface IEntryRepository  {
 
-    Likes findById(int id);
-    List<Likes> findAll();
+    Entry findById(int id);
+    List<Entry> findAll();
     void deleteById(int id);
 
 }

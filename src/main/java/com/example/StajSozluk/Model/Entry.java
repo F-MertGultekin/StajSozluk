@@ -1,5 +1,6 @@
 package com.example.StajSozluk.Model;
 
+import com.example.StajSozluk.EnumFile.EntryType;
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,12 +8,7 @@ import java.util.List;
 @Table(name="Entry")
 public class Entry {
 
-    public enum type
-    {
-        audio,
-        text,
-        video
-    }
+
     // Primary ID which increments
     // automatically when new entry
     // is added into the database
@@ -28,7 +24,7 @@ public class Entry {
 
     @Column(name="entryType",nullable=false, unique=false)
     @Enumerated(EnumType.STRING)
-    private type entryType;
+    private EntryType entryType;
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "userId")
@@ -39,7 +35,7 @@ public class Entry {
     private Topic topic;
 
     @OneToMany(mappedBy = "entry")
-    private List<Likes> likes;
+    private List<UserInteraction> likes;
 
 
 
@@ -47,7 +43,7 @@ public class Entry {
     public Entry(){
 
     }
-    public Entry(String path, type entryType)
+    public Entry(String path, EntryType entryType)
     {
 
         this.path=path;
@@ -58,7 +54,7 @@ public class Entry {
         return path;
     }
 
-    public type getEntryType() {
+    public EntryType getEntryType() {
         return entryType;
     }
 

@@ -1,16 +1,17 @@
 package com.example.StajSozluk.repository;
 
-import com.example.StajSozluk.Model.Message;
+
+import com.example.StajSozluk.Model.UserInteraction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
 @Repository
-public interface MessageRepository extends JpaRepository<Message, Integer> {
+public interface ILikesRepository {
 
-    Message findById(int id);
-    List<Message> findAll();
+    UserInteraction findById(int id);
+    List<UserInteraction> findAll();
     void deleteById(int id);
 
 }

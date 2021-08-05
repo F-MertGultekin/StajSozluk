@@ -25,7 +25,7 @@ public class User
     private List<Entry> entries;
 
     @OneToMany(mappedBy = "user")
-    private List<Likes> likes;
+    private List<UserInteraction> likes;
 
     @OneToMany(mappedBy = "user")
     private List<Friends> friendsList;

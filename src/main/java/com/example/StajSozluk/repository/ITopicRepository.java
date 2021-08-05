@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @Repository
-public interface TopicRepository extends JpaRepository<Topic, Integer> {
+public interface ITopicRepository extends JpaRepository<Topic, Integer> {
 
     Topic findById(int id);
     List<Topic> findAll();
