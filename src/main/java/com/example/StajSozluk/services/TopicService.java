@@ -5,8 +5,10 @@ import com.example.StajSozluk.repository.ITopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Service
 public class TopicService implements ITopicService
 {
@@ -14,8 +16,9 @@ public class TopicService implements ITopicService
     private ITopicRepository topicRepository;
 
     @Override
-   public void addTopic(Topic topic)
+    public void addTopic(Topic topic)
     {
+
         topicRepository.save(topic);
     }
     @Override
@@ -37,6 +40,7 @@ public class TopicService implements ITopicService
     @Override
     public Topic getTopic(int id)
     {
+        System.out.println("service");
         return topicRepository.findById(id);
     }
 }

@@ -24,6 +24,7 @@ public class Message {
     {
 
     }
+    //receiver var sender yok eksik
     public Message(int receiverId, String messageContent) {
 
         this.receiverId=receiverId;
@@ -52,5 +53,13 @@ public class Message {
 
     public void setMessageContent(String messageContent) {
         this.messageContent = messageContent;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

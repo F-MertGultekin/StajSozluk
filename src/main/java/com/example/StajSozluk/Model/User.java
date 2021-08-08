@@ -1,4 +1,5 @@
 package com.example.StajSozluk.Model;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class User
 
 
     @OneToMany(mappedBy = "user")
+
     private List<Entry> entries;
 
     @OneToMany(mappedBy = "user")
@@ -71,5 +73,41 @@ public class User
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+    }
+
+    public List<UserInteraction> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<UserInteraction> likes) {
+        this.likes = likes;
+    }
+
+    public List<Friends> getFriendsList() {
+        return friendsList;
+    }
+
+    public void setFriendsList(List<Friends> friendsList) {
+        this.friendsList = friendsList;
+    }
+
+    public List<Message> getMessageList() {
+        return messageList;
+    }
+
+    public void setMessageList(List<Message> messageList) {
+        this.messageList = messageList;
     }
 }

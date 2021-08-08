@@ -2,7 +2,6 @@ package com.example.StajSozluk.Model;
 
 import com.example.StajSozluk.EnumFile.UserInteractionType;
 import javax.persistence.*;
-import com.example.StajSozluk.EnumFile.*;
 
 @Entity
 public class UserInteraction {
@@ -11,8 +10,6 @@ public class UserInteraction {
     @GeneratedValue(strategy
             = GenerationType.AUTO)
     private int id;
-
-
 
 
     @Column(name="favourite",nullable=true, unique=false)
@@ -37,6 +34,7 @@ public class UserInteraction {
     {
 
     }
+    //Burası düzenlencek
     public UserInteraction(boolean favourite, UserInteractionType UserInteractionType) {
 
         this.favourite=favourite;
@@ -68,5 +66,27 @@ public class UserInteraction {
         this.UserInteractionType = likeType;
     }
 
+    public com.example.StajSozluk.EnumFile.UserInteractionType getUserInteractionType() {
+        return UserInteractionType;
+    }
 
+    public void setUserInteractionType(com.example.StajSozluk.EnumFile.UserInteractionType userInteractionType) {
+        UserInteractionType = userInteractionType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Entry getEntry() {
+        return entry;
+    }
+
+    public void setEntry(Entry entry) {
+        this.entry = entry;
+    }
 }

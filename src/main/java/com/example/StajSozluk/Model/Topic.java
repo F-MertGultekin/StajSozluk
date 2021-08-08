@@ -1,4 +1,6 @@
 package com.example.StajSozluk.Model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class Topic
 
 
     @OneToMany(mappedBy = "topic")
+    @JsonIgnore//??????
     private List<Entry> entries;
 
 
@@ -28,7 +31,9 @@ public class Topic
         this.title=title;
 
     }
-
+    public int getId() {
+        return id;
+    }
     public String getTitle() {
         return title;
     }
@@ -39,5 +44,13 @@ public class Topic
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
     }
 }

@@ -23,6 +23,7 @@ public class Friends
     {
 
     }
+    //İlişkisi USER eklenecek constructora
     public Friends(int friendUserId) {
 
         this.friendUserId=friendUserId;
@@ -42,5 +43,13 @@ public class Friends
 
     public void setFriendUserId(int friendUserId) {
         this.friendUserId = friendUserId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
