@@ -1,6 +1,7 @@
 package com.example.StajSozluk.Model;
 
 import com.example.StajSozluk.EnumFile.EntryType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,10 +10,6 @@ import java.util.List;
 @Table(name="Entry")
 public class Entry {
 
-
-    // Primary ID which increments
-    // automatically when new entry
-    // is added into the database
     @Id
     @GeneratedValue(strategy
             = GenerationType.AUTO)
@@ -25,16 +22,19 @@ public class Entry {
     @Enumerated(EnumType.STRING)
     private EntryType entryType;
 
+
     @ManyToOne(optional = true)
     @JoinColumn(name = "userId")
     private User user;
+
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "topicId")
     private Topic topic;
 
     @OneToMany(mappedBy = "entry")
-    private List<UserInteraction> likes;
+    @JsonIgnore()
+    private List<Interaction> likes;
 
     public Entry(){
 
@@ -89,11 +89,11 @@ public class Entry {
         this.topic = topic;
     }
 
-    public List<UserInteraction> getLikes() {
+    public List<Interaction> getLikes() {
         return likes;
     }
 
-    public void setLikes(List<UserInteraction> likes) {
+    public void setLikes(List<Interaction> likes) {
         this.likes = likes;
     }
 }

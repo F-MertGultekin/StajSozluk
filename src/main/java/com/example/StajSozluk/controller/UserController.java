@@ -1,14 +1,11 @@
 package com.example.StajSozluk.controller;
 
-import com.example.StajSozluk.EnumFile.EntryType;
-import com.example.StajSozluk.Model.Entry;
+
 import com.example.StajSozluk.Model.User;
-import com.example.StajSozluk.dto.EntryDto;
 import com.example.StajSozluk.dto.UserDto;
 import com.example.StajSozluk.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,34 +14,31 @@ public class UserController
     @Autowired
     private IUserService userService;
 
-    @PostMapping("/user")
+    @PostMapping("/user/addUser")
     public void addUser(@RequestBody UserDto userDto)
     {
-        User user = new User(userDto.getMail(),userDto.getPassword(),userDto.getNickname());
-        userService.addUser(user);
+
+        userService.addUser(userDto);
     }
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/user/{userId}/deleteUser")
     public void deleteUser(@PathVariable int userId)
     {
         userService.deleteUser(userId);
     }
-    @PutMapping("/user/{userId}")
-    public void updateUser(@RequestBody UserDto userDto, @PathVariable int userId)
+    @PutMapping("/user/updateUser")
+    public void updateUser(@RequestBody UserDto userDto)
     {
-        User user= userService.getUser(userId);
-        user.setMail(userDto.getMail());
-        user.setPassword(userDto.getPassword());
-        user.setNickname(userDto.getNickname());
-        userService.updateUser(user);
+
+        userService.updateUser(userDto);
     }
 
-    @GetMapping("/user")
-    public List<User> getAllUsers(@PathVariable int userId)
+    @GetMapping("/user/getAllUsers")
+    public List<User> getAllUsers()
     {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/user/{userId}/getUser")
     public User getUser(@PathVariable int userId)
     {
 

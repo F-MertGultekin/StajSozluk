@@ -1,14 +1,15 @@
 package com.example.StajSozluk.services;
 
 import com.example.StajSozluk.Model.Topic;
+import com.example.StajSozluk.dto.TopicDto;
 
 import java.util.List;
 
 public interface ITopicService
 {
-    void addTopic(Topic topic);
+    void addTopic(TopicDto topicDto);
     void deleteTopic(int id);
-    void updateTopic(Topic topic);
+    void updateTopic(TopicDto topicDto);
     List<Topic> getAllTopics();
-    public Topic getTopic(int id);
+    Topic getTopic(int id);
 }

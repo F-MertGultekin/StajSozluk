@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Repository
-public interface IFriendsRepository{
+public interface IFriendsRepository extends JpaRepository<Friends, Integer>{
 
     Friends findById(int id);
     List<Friends> findAll();

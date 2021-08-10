@@ -1,13 +1,10 @@
 package com.example.StajSozluk.dto;
 
-import com.example.StajSozluk.EnumFile.EntryType;
-
-
 public class EntryDto {
 
     private int id;
     private String path;
-    private String entryType;
+    private int entryType;
     private int userId;
     private int topicId;
 
@@ -15,7 +12,8 @@ public class EntryDto {
     {
 
     }
-    public EntryDto(int id,String path, String entryType, int userId,int topicId)
+
+    public EntryDto(int id,String path, int entryType, int userId,int topicId)
     {
         this.id=id;
         this.path=path;
@@ -40,11 +38,11 @@ public class EntryDto {
         this.path = path;
     }
 
-    public String getEntryType() {
+    public int getEntryType() {
         return entryType;
     }
 
-    public void setEntryType(String entryType) {
+    public void setEntryType(int entryType) {
         this.entryType = entryType;
     }
 

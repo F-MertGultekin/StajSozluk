@@ -4,14 +4,13 @@ public class MessageDto {
     private int id;
     private int receiverId;
     private String messageContent;
-    private UserDto user;
+    private int senderId;
 
-    //User dto yerine user id olacak
-    public MessageDto(int id,int receiverId, String messageContent, UserDto user) {
+    public MessageDto(int id,int receiverId, String messageContent, int senderId) {
+        this.id=id;
         this.receiverId = receiverId;
         this.messageContent = messageContent;
-        this.user = user;
-        this.id=id;
+        this.senderId = senderId;
     }
 
     public int getReceiverId() {
@@ -30,12 +29,12 @@ public class MessageDto {
         this.messageContent = messageContent;
     }
 
-    public UserDto getUser() {
-        return user;
+    public int getUser() {
+        return senderId;
     }
 
-    public void setUser(UserDto user) {
-        this.user = user;
+    public void setUser(int user) {
+        this.senderId = user;
     }
 
     public int getId() {

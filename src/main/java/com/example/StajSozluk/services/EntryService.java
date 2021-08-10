@@ -1,10 +1,15 @@
 package com.example.StajSozluk.services;
 
+import com.example.StajSozluk.EnumFile.EntryType;
 import com.example.StajSozluk.Model.Entry;
+import com.example.StajSozluk.Model.Topic;
+import com.example.StajSozluk.Model.User;
+import com.example.StajSozluk.dto.EntryDto;
 import com.example.StajSozluk.repository.IEntryRepository;
+import com.example.StajSozluk.repository.ITopicRepository;
+import com.example.StajSozluk.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,26 +21,34 @@ public class EntryService implements IEntryService
     @Autowired
     private IEntryRepository entryRepository;
 
-    @Override
-    public void addEntry(Entry entry)
-    {
+    @Autowired
+    private ITopicRepository topicRepository;
 
-        //entry.getTopic().getEntries().add(entry);
-        entryRepository.save(entry);
+    @Autowired
+    private IUserRepository userRepository;
+
+    @Override
+    public void addEntry(EntryDto entryDto)
+    {
+        Topic topic=topicRepository.findById(entryDto.getTopicId());
+        User user = userRepository.getById(entryDto.getUserId());
+        Entry newEntry = new Entry(entryDto.getPath(), EntryType.values()[entryDto.getEntryType()],user,topic);
+        entryRepository.save(newEntry);
     }
 
     @Override
     public void deleteEntry(Entry entry) {
-        entry.getTopic().getEntries().remove(entry);
+
         entryRepository.delete(entry);
     }
 
-
-
-    //????????????????????????????????????
     @Override
-    public void updateEntry(Entry entry)
+    public void updateEntry(EntryDto entryDto)
     {
+
+        Entry entry=entryRepository.findById(entryDto.getId());
+        entry.setPath(entryDto.getPath());
+        entry.setEntryType(EntryType.values()[entryDto.getEntryType()]);
         entryRepository.save(entry);
     }
 
@@ -49,8 +62,10 @@ public class EntryService implements IEntryService
     }
 
     @Override
-    public Entry getEntry(int id) {
-        return entryRepository.findById(id);
+    public Entry getEntry(int entryId)
+    {
+
+        return entryRepository.findById(entryId);
     }
 
 }

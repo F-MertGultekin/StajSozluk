@@ -1,6 +1,6 @@
 package com.example.StajSozluk.Model;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,13 +15,9 @@ public class Topic
     @Column(name="title",length=100, nullable=false, unique=false)
     private String title;
 
-
-
     @OneToMany(mappedBy = "topic")
-    @JsonIgnore//??????
+    @JsonIgnore
     private List<Entry> entries;
-
-
 
     public Topic(){
 

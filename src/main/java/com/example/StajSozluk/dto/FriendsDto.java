@@ -5,13 +5,14 @@ public class FriendsDto
 {
     private int id;
     private int friendUserId;
-    private UserDto user;
+    private int myUserId;
 
-    //User dto yerine user id olacak
-    public FriendsDto(int id,int friendUserId, UserDto user) {
-        this.friendUserId = friendUserId;
-        this.user = user;
+
+    public FriendsDto(int id,int friendUserId, int myUserId) {
         this.id=id;
+        this.friendUserId = friendUserId;
+        this.myUserId = myUserId;
+
     }
 
     public int getFriendUserId() {
@@ -22,12 +23,12 @@ public class FriendsDto
         this.friendUserId = friendUserId;
     }
 
-    public UserDto getUser() {
-        return user;
+    public int getUser() {
+        return myUserId;
     }
 
-    public void setUser(UserDto user) {
-        this.user = user;
+    public void setUser(int user) {
+        this.myUserId = user;
     }
 
     public int getId() {

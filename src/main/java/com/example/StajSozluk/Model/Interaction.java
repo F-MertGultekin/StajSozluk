@@ -1,10 +1,12 @@
 package com.example.StajSozluk.Model;
 
-import com.example.StajSozluk.EnumFile.UserInteractionType;
+import com.example.StajSozluk.EnumFile.InteractionType;
+
+
 import javax.persistence.*;
 
 @Entity
-public class UserInteraction {
+public class Interaction {
 
     @Id
     @GeneratedValue(strategy
@@ -18,9 +20,13 @@ public class UserInteraction {
 
     @Column(name="UserInteractionType",nullable=true, unique=false)
     @Enumerated(EnumType.STRING)
-    private UserInteractionType UserInteractionType;
+    private InteractionType interactionType;
 
+/*
 
+JSONIGNORE gerekebilir entryde kullandığımız gibi Hem user için hem entry için gerekebilir.
+
+ */
     @ManyToOne(optional = true)
     @JoinColumn(name = "userId")
     private User user;
@@ -30,15 +36,16 @@ public class UserInteraction {
     private Entry entry;
 
 
-    public UserInteraction()
+    public Interaction()
     {
 
     }
-    //Burası düzenlencek
-    public UserInteraction(boolean favourite, UserInteractionType UserInteractionType) {
+    public Interaction(boolean favourite, InteractionType interactionType, User user, Entry entry) {
 
         this.favourite=favourite;
-        this.UserInteractionType=UserInteractionType;
+        this.interactionType=interactionType;
+        this.user=user;
+        this.entry=entry;
 
     }
     public int getId() {
@@ -58,21 +65,17 @@ public class UserInteraction {
         this.favourite = favourite;
     }
 
-    public UserInteractionType getLikeType() {
-        return UserInteractionType;
+    public InteractionType getInteractionType() {
+        return interactionType;
     }
 
-    public void setLikeType(UserInteractionType likeType) {
-        this.UserInteractionType = likeType;
+    public void setInteractionType(InteractionType interactionType) {
+        this.interactionType = interactionType;
     }
 
-    public com.example.StajSozluk.EnumFile.UserInteractionType getUserInteractionType() {
-        return UserInteractionType;
-    }
 
-    public void setUserInteractionType(com.example.StajSozluk.EnumFile.UserInteractionType userInteractionType) {
-        UserInteractionType = userInteractionType;
-    }
+
+
 
     public User getUser() {
         return user;

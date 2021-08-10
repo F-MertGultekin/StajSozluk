@@ -1,6 +1,14 @@
 package com.example.StajSozluk.Model;
 import javax.persistence.*;
 
+
+/*
+
+burada receiver sender tiplerinde düzenleme olabilir
+ayrıca jsno ignore gerekebilir
+ */
+
+
 @Entity
 public class Message {
     @Id
@@ -17,18 +25,19 @@ public class Message {
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "senderId")
-    private User user;
+    private User senderId;
 
 
     public Message()
     {
 
     }
-    //receiver var sender yok eksik
-    public Message(int receiverId, String messageContent) {
+
+    public Message(int receiverId, String messageContent, User senderId) {
 
         this.receiverId=receiverId;
         this.messageContent=messageContent;
+        this.senderId=senderId;
 
     }
     public int getId() {
@@ -56,10 +65,10 @@ public class Message {
     }
 
     public User getUser() {
-        return user;
+        return senderId;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.senderId = user;
     }
 }

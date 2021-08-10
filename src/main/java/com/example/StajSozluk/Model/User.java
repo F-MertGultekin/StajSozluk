@@ -1,5 +1,7 @@
 package com.example.StajSozluk.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,16 +25,17 @@ public class User
 
 
     @OneToMany(mappedBy = "user")
-
+    @JsonIgnore()
     private List<Entry> entries;
-
+    //JSON ıgnore gerekebilir
     @OneToMany(mappedBy = "user")
-    private List<UserInteraction> likes;
+    @JsonIgnore()
+    private List<Interaction> likes;
 
     @OneToMany(mappedBy = "user")
     private List<Friends> friendsList;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "senderId")
     private List<Message> messageList;
 
 
@@ -87,11 +90,11 @@ public class User
         this.entries = entries;
     }
 
-    public List<UserInteraction> getLikes() {
+    public List<Interaction> getLikes() {
         return likes;
     }
 
-    public void setLikes(List<UserInteraction> likes) {
+    public void setLikes(List<Interaction> likes) {
         this.likes = likes;
     }
 
