@@ -29,12 +29,12 @@ public class MessageDto {
         this.messageContent = messageContent;
     }
 
-    public int getUser() {
+    public int getUserId() {
         return senderId;
     }
 
-    public void setUser(int user) {
-        this.senderId = user;
+    public void setUserId(int senderId) {
+        this.senderId = senderId;
     }
 
     public int getId() {

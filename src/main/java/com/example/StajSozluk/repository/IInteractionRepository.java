@@ -1,7 +1,6 @@
 package com.example.StajSozluk.repository;
 
 
-import com.example.StajSozluk.Model.Friends;
 import com.example.StajSozluk.Model.Interaction;
 
 import org.springframework.data.jpa.repository.JpaRepository;

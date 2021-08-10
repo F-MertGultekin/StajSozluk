@@ -31,13 +31,13 @@ public class TopicController
         topicService.updateTopic(topicDto);
     }
 
-    @GetMapping("topic/getAllTopics")
+    @GetMapping("/topic/getAllTopics")
     public List<Topic> getAllTopics()
     {
 
         return topicService.getAllTopics();
     }
-    @GetMapping("topic/{id}/getTopic")
+    @GetMapping("/topic/{id}/getTopic")
     public Topic getTopic(@PathVariable int id)
     {
 

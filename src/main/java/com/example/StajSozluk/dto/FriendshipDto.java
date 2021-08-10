@@ -1,33 +1,33 @@
 package com.example.StajSozluk.dto;
 
 
-public class FriendsDto
+public class FriendshipDto
 {
     private int id;
-    private int friendUserId;
+    private int myFriendUserId;
     private int myUserId;
 
 
-    public FriendsDto(int id,int friendUserId, int myUserId) {
+    public FriendshipDto(int id,int friendUserId, int myUserId) {
         this.id=id;
-        this.friendUserId = friendUserId;
+        this.myFriendUserId = friendUserId;
         this.myUserId = myUserId;
 
     }
 
     public int getFriendUserId() {
-        return friendUserId;
+        return myFriendUserId;
     }
 
     public void setFriendUserId(int friendUserId) {
-        this.friendUserId = friendUserId;
+        this.myFriendUserId = myFriendUserId;
     }
 
-    public int getUser() {
+    public int getMyUserId() {
         return myUserId;
     }
 
-    public void setUser(int user) {
+    public void setMyUserId(int user) {
         this.myUserId = user;
     }
 

@@ -27,15 +27,17 @@ public class User
     @OneToMany(mappedBy = "user")
     @JsonIgnore()
     private List<Entry> entries;
-    //JSON ıgnore gerekebilir
+
     @OneToMany(mappedBy = "user")
     @JsonIgnore()
     private List<Interaction> likes;
 
     @OneToMany(mappedBy = "user")
-    private List<Friends> friendsList;
+    @JsonIgnore()
+    private List<Friendship> friendsList;
 
-    @OneToMany(mappedBy = "senderId")
+    @OneToMany(mappedBy = "senderUser")
+    @JsonIgnore()
     private List<Message> messageList;
 
 
@@ -98,11 +100,11 @@ public class User
         this.likes = likes;
     }
 
-    public List<Friends> getFriendsList() {
+    public List<Friendship> getFriendsList() {
         return friendsList;
     }
 
-    public void setFriendsList(List<Friends> friendsList) {
+    public void setFriendsList(List<Friendship> friendsList) {
         this.friendsList = friendsList;
     }
 

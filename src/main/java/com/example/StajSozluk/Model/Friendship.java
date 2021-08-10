@@ -2,7 +2,7 @@ package com.example.StajSozluk.Model;
 import javax.persistence.*;
 
 @Entity
-public class Friends
+public class Friendship
 {
     @Id
     @GeneratedValue(strategy
@@ -19,12 +19,12 @@ public class Friends
 
 
 
-    public Friends()
+    public Friendship()
     {
 
     }
 
-    public Friends(int friendUserId,User user) {
+    public Friendship(int friendUserId,User user) {
 
         this.friendUserId=friendUserId;
         this.user=user;
