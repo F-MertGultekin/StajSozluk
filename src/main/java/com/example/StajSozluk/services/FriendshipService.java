@@ -5,13 +5,14 @@ import com.example.StajSozluk.Model.Friendship;
 import com.example.StajSozluk.Model.User;
 import com.example.StajSozluk.dto.FriendshipDto;
 import com.example.StajSozluk.repository.IFriendshipRepository;
-import com.example.StajSozluk.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class FriendshipService implements IFriendshipService
 {
@@ -21,15 +22,15 @@ public class FriendshipService implements IFriendshipService
     private IFriendshipRepository friendshipRepository;
 
     @Autowired
-    private IUserRepository userRepository;
+    private IUserService userService;
 
     @Override
     public void addFriendship(FriendshipDto friendshipDto)
     {
-        User myUser = userRepository.getById(friendshipDto.getMyUserId());
+        User myUser = userService.getUser(friendshipDto.getMyUserId());
         Friendship friendship1= new Friendship(friendshipDto.getFriendUserId(),myUser);
 
-        User myFriendUser = userRepository.getById(friendshipDto.getFriendUserId());
+        User myFriendUser = userService.getUser(friendshipDto.getFriendUserId());
         Friendship friendship2 = new Friendship(friendshipDto.getMyUserId(),myFriendUser);
 
         friendshipRepository.save(friendship1);
@@ -55,7 +56,7 @@ public class FriendshipService implements IFriendshipService
     @Override
     public List<Friendship> getAllFriends(int myUserId)
     {
-        User myUser = userRepository.findById(myUserId);
+        User myUser = userService.getUser(myUserId);
         List<Friendship> getAllFriends=new ArrayList<>();
         friendshipRepository.findAllByUser(myUser)
                 .forEach(getAllFriends::add);

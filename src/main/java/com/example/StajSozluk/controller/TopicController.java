@@ -10,34 +10,35 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/topic")
 public class TopicController
 {
     @Autowired
     private ITopicService topicService;
 
-    @PostMapping("/topic/addTopic")
+    @PostMapping("/addTopic")
     public void addTopic(@RequestBody TopicDto topicDto)
     {
         topicService.addTopic(topicDto);
     }
-    @DeleteMapping("/topic/{id}/deleteTopic")
+    @DeleteMapping("/{id}/deleteTopic")
     public void deleteTopic(@PathVariable int id){
         topicService.deleteTopic(id);
     }
-    @PutMapping("/topic/updateTopic")
+    @PutMapping("/updateTopic")
     public void updateTopic(@RequestBody TopicDto topicDto)
     {
 
         topicService.updateTopic(topicDto);
     }
 
-    @GetMapping("/topic/getAllTopics")
+    @GetMapping("/getAllTopics")
     public List<Topic> getAllTopics()
     {
 
         return topicService.getAllTopics();
     }
-    @GetMapping("/topic/{id}/getTopic")
+    @GetMapping("/{id}/getTopic")
     public Topic getTopic(@PathVariable int id)
     {
 

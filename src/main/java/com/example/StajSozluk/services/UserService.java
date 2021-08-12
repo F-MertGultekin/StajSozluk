@@ -1,6 +1,5 @@
 package com.example.StajSozluk.services;
 
-
 import com.example.StajSozluk.Model.User;
 import com.example.StajSozluk.dto.UserDto;
 import com.example.StajSozluk.repository.IUserRepository;
@@ -8,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
+
+
 
 @Transactional
 @Service

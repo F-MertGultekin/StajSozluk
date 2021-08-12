@@ -21,17 +21,18 @@ public class EntryService implements IEntryService
     @Autowired
     private IEntryRepository entryRepository;
 
+    //BURADA SERVİCEDEN ÇEKMELİSİN TOPİC VE USER İÇİN
     @Autowired
-    private ITopicRepository topicRepository;
+    private ITopicService topicService;
 
     @Autowired
-    private IUserRepository userRepository;
+    private IUserService userService;
 
     @Override
     public void addEntry(EntryDto entryDto)
     {
-        Topic topic=topicRepository.findById(entryDto.getTopicId());
-        User user = userRepository.getById(entryDto.getUserId());
+        Topic topic = topicService.getTopic(entryDto.getTopicId());
+        User user = userService.getUser(entryDto.getUserId());
         Entry newEntry = new Entry(entryDto.getPath(), EntryType.values()[entryDto.getEntryType()],user,topic);
         entryRepository.save(newEntry);
     }

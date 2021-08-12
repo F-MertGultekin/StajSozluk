@@ -1,6 +1,5 @@
 package com.example.StajSozluk.services;
 
-import com.example.StajSozluk.Model.Friendship;
 import com.example.StajSozluk.Model.Message;
 import com.example.StajSozluk.Model.User;
 import com.example.StajSozluk.dto.MessageDto;
@@ -9,9 +8,11 @@ import com.example.StajSozluk.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class MessageService implements IMessageService
 {
@@ -19,12 +20,12 @@ public class MessageService implements IMessageService
     private IMessageRepository messageRepository;
 
     @Autowired
-    private IUserRepository userRepository;
+    private IUserService userService;
 
     @Override
     public void sendMessage(MessageDto messageDto)
     {
-        User senderUser = userRepository.findById(messageDto.getUserId());
+        User senderUser = userService.getUser(messageDto.getUserId());
         Message newMessage = new Message(messageDto.getReceiverId(),messageDto.getMessageContent(),senderUser);
         messageRepository.save(newMessage);
     }
@@ -35,12 +36,25 @@ public class MessageService implements IMessageService
         messageRepository.deleteById(messageId);
 
     }
-    //Hatalı hiçbirşey dönmüyor
+
     @Override
     public List<Message> getAllMessages(int senderId, int receiverId)
     {
-        User senderUser= userRepository.findById(receiverId);
-        return messageRepository.findAllByReceiverIdAndSenderUser(receiverId,senderUser);
+        List<Message> AllMessages = messageRepository.findAll();
+        List<Message> getDialogue = new ArrayList<>();
+        for (Message message : AllMessages)
+        {
+            if (message.getUser().getId()==senderId || message.getReceiverId()==receiverId)
+            {
+                getDialogue.add(message);
+            }
+            if (message.getUser().getId()==receiverId || message.getReceiverId()==senderId)
+            {
+                getDialogue.add(message);
+            }
+        }
+
+        return getDialogue;
     }
 
     @Override

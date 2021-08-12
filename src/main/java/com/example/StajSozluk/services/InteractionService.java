@@ -1,16 +1,11 @@
 package com.example.StajSozluk.services;
 
-import com.example.StajSozluk.EnumFile.EntryType;
 import com.example.StajSozluk.EnumFile.InteractionType;
 import com.example.StajSozluk.Model.Entry;
 import com.example.StajSozluk.Model.Interaction;
-import com.example.StajSozluk.Model.Topic;
 import com.example.StajSozluk.Model.User;
 import com.example.StajSozluk.dto.InteractionDto;
-import com.example.StajSozluk.repository.IEntryRepository;
 import com.example.StajSozluk.repository.IInteractionRepository;
-import com.example.StajSozluk.repository.ITopicRepository;
-import com.example.StajSozluk.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -26,17 +21,16 @@ public class InteractionService implements IInteractionService
      IInteractionRepository interactionRepository;
 
     @Autowired
-    private IEntryRepository entryRepository;
+    private IEntryService entryService;
 
     @Autowired
-    private IUserRepository userRepository;
+    private IUserService userService;
 
     @Override
     public void addInteraction(InteractionDto interactionDto)
     {
-
-        User user = userRepository.getById(interactionDto.getUserId());
-        Entry entry = entryRepository.findById(interactionDto.getEntryId());
+        User user = userService.getUser(interactionDto.getUserId());
+        Entry entry = entryService.getEntry(interactionDto.getEntryId());
         Interaction newInteraction = new Interaction(interactionDto.isFavourite(), InteractionType.values()[interactionDto.getInteractionType()],user,entry);
         interactionRepository.save(newInteraction);
 
@@ -65,9 +59,6 @@ public class InteractionService implements IInteractionService
         interactionRepository.findAllByEntryId(entryId)
                 .forEach(AllInteractionsOfEntry::add);
         return AllInteractionsOfEntry;
-
-
-
     }
 
     @Override
